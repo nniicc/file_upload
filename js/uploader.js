@@ -1,6 +1,7 @@
 (function() {
 	var dropzone = $("#dropzone");
-	var progress = $(".progressBar");
+	var progressWarper = $(".progressWarper");
+	var progressBar = $("#progressbar");
 
 	var displayUploads = function(files){
 		var uploads = $("#filePlace"), anchor;
@@ -20,16 +21,18 @@
 		}else{
 			formData.append('data', files);
 		}
+		formData.append('tokenId', tokenId);
 
 		$(xhr.upload).bind({
 			load: function(){
-				progress.css('display', 'none');
+				progressWarper.css('display', 'none');
 			},
 			progress: function(e){
 				if(e.originalEvent.lengthComputable){
 					var percent = e.originalEvent.loaded / e.originalEvent.total;
-					progress.empty();
-					progress.append('<span>' + Math.round(percent * 100) + ' %</span>');
+					progressWarper.children('span').remove();
+					progressBar.val(Math.round(percent * 100));
+					progressWarper.append('<span>' + Math.round(percent * 100) + ' %</span>');
 				}
 			}
 		});
@@ -48,7 +51,7 @@
 		xhr.open('post', '_ajax/ajax.fileUpload.php');
 		xhr.setRequestHeader('Cache-Control', 'no-cache');
 
-		progress.css('display', 'block');
+		progressWarper.css('display', 'block');
 
 		xhr.send(formData);
 	};
@@ -79,6 +82,7 @@
 					var blob = clipboardItem.getAsFile();
 	                var blobUrl = window.webkitURL.createObjectURL(blob);
 	                formData.append('blob', blob);
+	                formData.append('tokenId', tokenId);
 				}
 			}
 
@@ -86,13 +90,14 @@
 
 			$(xhr.upload).bind({
 				load: function(){
-					progress.css('display', 'none');
+					progressWarper.css('display', 'none');
 				},
 				progress: function(e){
 					if(e.originalEvent.lengthComputable){
 						var percent = e.originalEvent.loaded / e.originalEvent.total;
-						progress.empty();
-						progress.append('<span>' + Math.round(percent * 100) + ' %</span>');
+						progressWarper.children('span').remove();
+						progressBar.val(Math.round(percent * 100));
+						progressWarper.append('<span>' + Math.round(percent * 100) + ' %</span>');
 					}
 				}
 			});
@@ -110,7 +115,7 @@
 			xhr.open('post', '_ajax/ajax.fileUpload.php');
 			xhr.setRequestHeader('Cache-Control', 'no-cache');
 
-			progress.css('display', 'block');
+			progressWarper.css('display', 'block');
 
 			xhr.send(formData);
 
