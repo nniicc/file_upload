@@ -21,7 +21,6 @@
 		}else{
 			formData.append('data', files);
 		}
-		formData.append('tokenId', tokenId);
 
 		$(xhr.upload).bind({
 			load: function(){
@@ -82,7 +81,6 @@
 					var blob = clipboardItem.getAsFile();
 	                var blobUrl = window.webkitURL.createObjectURL(blob);
 	                formData.append('blob', blob);
-	                formData.append('tokenId', tokenId);
 				}
 			}
 

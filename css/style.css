@@ -16,6 +16,9 @@ body{
 	color: #000;
 }
 
+.progressWarper{
+	display: none;
+}
 
 progress {
 	background-color: #f3f3f3;
