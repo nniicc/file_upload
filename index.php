@@ -10,7 +10,7 @@
 			<div class="dropzone" id="dropzone">Drop files here to upload</div>
 			<div id="rte" class="contenteditable" contenteditable="true"></div>
 			<div class="progressWarper">
-				<div class="meter">
+				<div class="meter animate">
 					<span id="progressbar" style="width: 0%"></span>
 				</div>
 

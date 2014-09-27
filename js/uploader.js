@@ -31,7 +31,7 @@
 					var percent = e.originalEvent.loaded / e.originalEvent.total;
 					progressBar.children('span').remove();
 					progressBar.css('width', Math.round(percent * 100)+"%");
-					progressBar.append('<span style="float:right">' + Math.round(percent * 100) + ' %</span>');
+					progressBar.append('<span><span style="float:right">' + Math.round(percent * 100) + ' %</span></span>');
 				}
 			}
 		});
@@ -103,7 +103,7 @@
 						var percent = e.originalEvent.loaded / e.originalEvent.total;
 						progressBar.children('span').remove();
 						progressBar.css('width', Math.round(percent * 100) +'%');
-						progressBar.append('<span style="float:right">' + Math.round(percent * 100) + ' %</span>');
+						progressBar.append('<span><span style="float:right">' + Math.round(percent * 100) + ' %</span></span>');
 					}
 				}
 			});
