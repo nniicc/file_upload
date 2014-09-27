@@ -29,9 +29,9 @@
 			progress: function(e){
 				if(e.originalEvent.lengthComputable){
 					var percent = e.originalEvent.loaded / e.originalEvent.total;
-					progressWarper.children('span').remove();
-					progressBar.val(Math.round(percent * 100));
-					progressWarper.append('<span>' + Math.round(percent * 100) + ' %</span>');
+					progressBar.children('span').remove();
+					progressBar.css('width', Math.round(percent * 100)+"%");
+					progressBar.append('<span style="float:right">' + Math.round(percent * 100) + ' %</span>');
 				}
 			}
 		});
@@ -59,8 +59,10 @@
 	$(document).on('click', function(){
 		$("#rte").focus();
 	});
+
 	if($.browser.mozilla){
 		document.body.addEventListener("paste", function(e){
+			console.log(e);
 			setTimeout(function()
 	    	{
 		        var blob = $('#rte img').attr('src');
@@ -68,10 +70,16 @@
 		        upload(blob, true);
 	    	}, 2);
 		},false);
+	}else if($.browser.safari){
+		window.addEventListener('paste', function(e){
+			if(e.clipboardData.files[0] !== undefined)
+				upload(e.clipboardData.files);
+			else
+				alert('Safari doesn\'t support copy pasting none saved images\nYou can still copy files from your finder/explorer');
+		});
 	}else if($.browser.chrome){
 
 		window.addEventListener("paste", function(e){
-
 			var formData = new FormData(), xhr = new XMLHttpRequest();
 			for (var i = e.clipboardData.items.length - 1; i >= 0; i--) {
 				var clipboardItem = e.clipboardData.items[i];
@@ -93,9 +101,9 @@
 				progress: function(e){
 					if(e.originalEvent.lengthComputable){
 						var percent = e.originalEvent.loaded / e.originalEvent.total;
-						progressWarper.children('span').remove();
-						progressBar.val(Math.round(percent * 100));
-						progressWarper.append('<span>' + Math.round(percent * 100) + ' %</span>');
+						progressBar.children('span').remove();
+						progressBar.css('width', Math.round(percent * 100) +'%');
+						progressBar.append('<span style="float:right">' + Math.round(percent * 100) + ' %</span>');
 					}
 				}
 			});
