@@ -179,7 +179,7 @@ In the second div you can add a color if you wish to change the color of the pro
 </div>
 ```
 
-The next thing is pretty cool in some browsers you can paste images from your clipboard into the website for it to upload (Chrome, firefox, IE, safari, opera), for some of them to work you need to add this. You can change the div id but not that you have to change it in the uploader.js as well
+The next thing is pretty cool in some browsers you can paste images from your clipboard into the website for it to upload (Chrome, firefox, IE, safari, opera), for some of them to work you need to add this. You can change the div id but note that you have to change it in the uploader.js as well
 
 ```css
 .contenteditable{
