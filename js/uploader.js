@@ -2,12 +2,30 @@
 	var dropzone = $("#dropzone");
 	var progressWarper = $(".progressWarper");
 	var progressBar = $("#progressbar");
+	var input = $("#inputFiles");
+
+	$(input).bind({
+		change: function(e){
+			//console.log(e, e.originalEvent.dataTransfer);
+			var form = $("form");
+
+			form.on('submit', function(event){
+				event.preventDefault();
+				upload(event.target[0].files);
+				form.closest('form').get(0).reset();
+			});
+
+			form.trigger('submit');
+		}
+	});
 
 	var displayUploads = function(files){
 		var uploads = $("#filePlace"), anchor;
-		for (var i = files.length - 1; i >= 0; i--) {
-			anchor = '<li><a href="'+files[i].path+'" target="_black">'+files[i].name+'</a></li>';
-			uploads.append(anchor);
+		if(files){
+			for (var i = files.length - 1; i >= 0; i--) {
+				anchor = '<li><a href="'+files[i].path+'" target="_black">'+files[i].name+'</a></li>';
+				uploads.append(anchor);
+			}
 		}
 	};
 
@@ -15,8 +33,10 @@
 		var formData = new FormData(), xhr = new XMLHttpRequest();
 
 		if(!blob){
-			for (var i = 0; i < files.length; i++) {
-				formData.append('files[]', files[i]);
+			if(files){
+				for (var i = 0; i < files.length; i++) {
+					formData.append('files[]', files[i]);
+				}
 			}
 		}else{
 			formData.append('data', files);
@@ -62,7 +82,6 @@
 
 	if($.browser.mozilla){
 		document.body.addEventListener("paste", function(e){
-			console.log(e);
 			setTimeout(function()
 	    	{
 		        var blob = $('#rte img').attr('src');

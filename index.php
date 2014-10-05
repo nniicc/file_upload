@@ -7,6 +7,9 @@
 	</head>
 	<body>
 		<div class="uploads">
+			<form id="inputForm">
+				<input type="file" multiple="multiple" name="files[]" id="inputFiles">
+			</form>
 			<div class="dropzone" id="dropzone">Drop files here to upload</div>
 			<div id="rte" class="contenteditable" contenteditable="true"></div>
 			<div class="progressWarper">
@@ -20,7 +23,7 @@
 			</ul>
 		</div>
 
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/libs/jquery.2.1.1.min.js"></script>
 		<script type="text/javascript" src="js/libs/jquery-migrate-mini.js"></script>
 		<script type="text/javascript" src="js/uploader.js"></script>
 	</body>
