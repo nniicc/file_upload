@@ -143,10 +143,6 @@ body{
 	background-image: -webkit-linear-gradient(#f0a3a3, #f42323);
 }
 
-.nostripes > span > span, .nostripes > span:after {
-	-webkit-animation: none;
-	background-image: none;
-}
 .contenteditable{
 	width: 0px;
 	height: 0px;

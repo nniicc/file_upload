@@ -16,7 +16,6 @@
 				<div class="meter animate">
 					<span id="progressbar" style="width: 0%"></span>
 				</div>
-
 			</div>
 
 			<ul id="filePlace">
